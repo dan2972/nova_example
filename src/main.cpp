@@ -49,12 +49,12 @@ int main() {
     window.SetKeyInputCallback(keyCallback);
     window.SetFramebufferResizeCallback(framebufferResizeCallback);
 
-    nova::Swapchain swapchain = device.CreateSwapchainBuilder(window.GetSurface())
-        .SetDesiredFormat(nova::ImageFormat::B8G8R8A8Unorm)
+    nova::SwapchainBuilder swapchainBuilder = device.CreateSwapchainBuilder(window.GetSurface())
+        .SetDesiredFormat(nova::ImageFormat::B8G8R8A8Srgb)
         .SetDesiredColorSpace(nova::ColorSpace::SrgbNonlinear)
         .SetDesiredPresentMode(nova::SwapchainPresentMode::Fifo)
-        .SetDesiredExtent(window.GetFramebufferSize())
-        .build();
+        .SetDesiredExtent(window.GetFramebufferSize());
+    nova::Swapchain swapchain = swapchainBuilder.build();
 
     nova::Image depthImage = device.CreateImage({
         .format = device.GetSupportedDepthFormats()[0],
@@ -169,7 +169,7 @@ int main() {
         .AddShaderStage(nova::ShaderStageFlag::Vertex, shaderModule, "main")
         .AddShaderStage(nova::ShaderStageFlag::Fragment, shaderModule, "main")
         .EnableDepthStencil(true, device.GetSupportedDepthFormats()[0])
-        .SetColorFormat(nova::ImageFormat::B8G8R8A8Unorm);
+        .SetColorFormat(nova::ImageFormat::B8G8R8A8Srgb);
 
     nova::GraphicsPipeline pipeline = pipelineBuilder.Build();
 
@@ -263,10 +263,7 @@ int main() {
             updateSwapchain = false;
             device.WaitIdle();
             swapchain.Destroy();
-            swapchain = device.CreateSwapchainBuilder(window.GetSurface())
-                .SetDesiredFormat(nova::ImageFormat::B8G8R8A8Unorm)
-                .SetDesiredColorSpace(nova::ColorSpace::SrgbNonlinear)
-                .SetDesiredPresentMode(nova::SwapchainPresentMode::Fifo)
+            swapchain = swapchainBuilder
                 .SetDesiredExtent(window.GetFramebufferSize())
                 .build();
             depthImage.Destroy();
