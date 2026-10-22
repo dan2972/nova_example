@@ -1,0 +1,25 @@
+{
+  "dependencies": [
+    "glm",
+    "volk",
+    "vulkan-memory-allocator",
+    {
+      "name": "shader-slang",
+      "version>=": "2026.5"
+    },
+    "spdlog",
+    {
+      "name": "ktx",
+      "features": [
+        "vulkan"
+      ]
+    },
+    {
+      "name": "sdl3",
+      "features": [
+        "vulkan"
+      ]
+    },
+    "tinyobjloader"
+  ]
+}

@@ -1,0 +1,10 @@
+build/
+.vs/
+.vscode/
+.DS_Store
+**/.DS_Store
+CMakeUserPresets.json
+.zed/
+.agents/
+.cache/
+compile_commands.json
