@@ -1,6 +1,6 @@
 # Nova Example
 
-This project shows an example usage of my [Nova](https://github.com/dan2972/nova) library. The example follows the general popular "[How to Vulkan](https://www.howtovulkan.com/)" tutorial
+This project shows an example usage of my [Nova](https://github.com/dan2972/nova) library. The example follows the popular "[How to Vulkan](https://www.howtovulkan.com/)" tutorial
 
 ## Building
 This example project uses CMake and VCPKG to build.
